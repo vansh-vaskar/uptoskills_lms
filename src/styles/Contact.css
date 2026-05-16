@@ -1,0 +1,119 @@
+.contact-container {
+    background: #0f172a;
+    color: white;
+    padding: 100px 8%;
+    min-height: 80vh;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.contact-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.contact-header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.info-card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.info-icon {
+    font-size: 1.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.info-text h4 {
+    margin: 0 0 5px;
+    color: #f97316;
+    font-size: 1.1rem;
+}
+
+.info-text p {
+    margin: 0;
+    color: #cbd5e1;
+}
+
+.contact-form-wrapper {
+    background: #1e293b;
+    padding: 50px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-group-modern {
+    margin-bottom: 25px;
+}
+
+.form-group-modern label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.form-group-modern input, 
+.form-group-modern textarea {
+    width: 100%;
+    padding: 15px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group-modern input:focus, 
+.form-group-modern textarea:focus {
+    outline: none;
+    border-color: #f97316;
+}
+
+.success-message {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .contact-content { grid-template-columns: 1fr; }
+}

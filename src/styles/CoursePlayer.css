@@ -1,0 +1,376 @@
+.modern-player-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  height: calc(100vh - 70px);
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.player-sidebar-premium {
+  background: #1e293b;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar-header-player {
+  padding: 25px;
+  background: rgba(15, 23, 42, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.back-btn-player {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.sidebar-header-player h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.progress-container-mini {
+  background: rgba(255, 255, 255, 0.05);
+  height: 6px;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.progress-bar-mini {
+  height: 100%;
+  background: #f97316;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-container-mini + span {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.video-list-container {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.lesson-item-flat {
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.lesson-item-flat:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.lesson-item-flat.active {
+  background: rgba(249, 115, 22, 0.1);
+  border-left-color: #f97316;
+}
+
+.l-idx-box {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.lesson-item-flat.active .l-idx-box {
+  background: #f97316;
+  color: white;
+}
+
+.l-idx-box .done {
+  color: #10b981;
+}
+
+.l-content-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-title {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.l-dur {
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+.play-ico {
+  color: #64748b;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.lesson-item-flat:hover .play-ico, .lesson-item-flat.active .play-ico {
+  opacity: 1;
+}
+
+.sidebar-footer-player {
+  padding: 20px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.complete-all-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.complete-all-btn:hover {
+  transform: scale(1.02);
+}
+
+.player-content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px;
+  background: #0f172a;
+}
+
+.media-header {
+  margin-bottom: 30px;
+}
+
+.media-header h2 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.media-header p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.player-nav-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.nav-control-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.nav-control-btn:hover:not(:disabled) {
+  background: #f97316;
+  border-color: #f97316;
+  transform: translateY(-2px);
+}
+
+.nav-control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.media-viewport {
+  aspect-ratio: 16/9;
+  background: black;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.player-tabs-bar {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 30px;
+}
+
+.tab-btn-p {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  padding: 15px 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn-p.active {
+  color: #f97316;
+}
+
+.tab-btn-p.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #f97316;
+}
+
+.tab-content-area-player h3 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.tab-content-area-player p {
+  color: #94a3b8;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.instructor-mini-bio {
+  display: flex;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.instructor-mini-bio img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #f97316;
+}
+
+.instructor-mini-bio strong {
+  color: white;
+  display: block;
+}
+
+.instructor-mini-bio p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.player-notes-area {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  min-height: 200px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.notes-hint {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 15px;
+}
+
+.resource-download-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.res-icon {
+  background: #f97316;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.res-info {
+  flex: 1;
+}
+
+.res-info h4 {
+  color: white;
+  margin: 0;
+}
+
+.res-info p {
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.res-dl-btn {
+  background: #334155;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.res-dl-btn:hover {
+  background: #f97316;
+}
+
+@media (max-width: 1024px) {
+  .modern-player-layout {
+    grid-template-columns: 1fr;
+  }
+  .player-sidebar-premium {
+    display: none;
+  }
+}

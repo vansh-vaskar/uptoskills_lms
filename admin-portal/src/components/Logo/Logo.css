@@ -1,0 +1,45 @@
+.logo-root {
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', 'Montserrat', sans-serif;
+    user-select: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 900;
+    font-size: 1.3em;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.text-orange {
+    color: #f97316;
+}
+
+.text-teal {
+    color: #00bfa5;
+}
+
+.small {
+    transform: scale(0.7);
+    transform-origin: left;
+}
+
+.medium {
+    transform: scale(1);
+}
+
+.large {
+    transform: scale(1.4);
+}
+
+@media (max-width: 768px) {
+    .logo-root {
+        transform: scale(0.85);
+        transform-origin: left;
+    }
+}
