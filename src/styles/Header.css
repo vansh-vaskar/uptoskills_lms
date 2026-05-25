@@ -60,7 +60,7 @@
 .logo-tagline {
   font-size: 0.65rem;
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--color-info);
   letter-spacing: 1.5px;
   margin-top: 2px;
 }
@@ -92,7 +92,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #f97316;
+  background: var(--color-primary);
   border-radius: 2px;
 }
 
@@ -101,7 +101,7 @@
   top: 100%;
   right: -50px;
   width: 320px;
-  background: #1e293b;
+  background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 20px;
@@ -177,9 +177,9 @@
   right: 8px;
   width: 8px;
   height: 8px;
-  background: #f97316;
+  background: var(--color-primary);
   border-radius: 50%;
-  border: 2px solid #0f172a;
+  border: 2px solid var(--color-background);
 }
 
 .profile-wrapper {
@@ -200,17 +200,17 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 2px solid #f97316;
+  border: 2px solid var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f97316;
+  color: var(--color-primary);
   background: rgba(249, 115, 22, 0.05);
   transition: all 0.3s ease;
 }
 
 .modern-profile-icon-wrapper:hover {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   transform: scale(1.05);
 }
@@ -226,7 +226,7 @@
   top: 100%;
   right: 0;
   width: 250px;
-  background: #1e293b;
+  background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 15px;
@@ -271,7 +271,7 @@
 
 .dropdown-link-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #f97316;
+  color: var(--color-primary);
 }
 
 .logout-action-btn {
@@ -280,7 +280,7 @@
   background: none;
   border: none;
   padding: 10px;
-  color: #ef4444;
+  color: var(--color-error);
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
@@ -311,7 +311,7 @@
 }
 
 .signup-btn-header {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   text-decoration: none;
   padding: 8px 18px;
@@ -329,7 +329,7 @@
 .search-container {
   display: flex;
   align-items: center;
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 8px;
   padding: 5px 12px;
   transition: all 0.3s ease;
@@ -338,7 +338,7 @@
 
 .search-container.expanded {
   width: 250px;
-  border-color: #f97316;
+  border-color: var(--color-primary);
 }
 
 .search-input {
@@ -396,20 +396,20 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: #ef4444;
+  background: var(--color-error);
   color: white;
   font-size: 10px;
   padding: 2px 5px;
   border-radius: 10px;
   font-weight: 800;
-  border: 2px solid #0f172a;
+  border: 2px solid var(--color-background);
 }
 
 .notif-dropdown {
   position: absolute;
   top: 55px;
   right: -50px;
-  background: #1e293b;
+  background: var(--color-surface);
   min-width: 280px;
   border-radius: 12px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -432,7 +432,7 @@
   padding: 10px;
   background: rgba(249, 115, 22, 0.05);
   border-radius: 8px;
-  border-left: 3px solid #f97316;
+  border-left: 3px solid var(--color-primary);
 }
 
 .notif-item p {
@@ -466,7 +466,7 @@
 }
 
 .profile-trigger:hover {
-  border-color: #f97316;
+  border-color: var(--color-primary);
 }
 
 .profile-avatar {
@@ -479,7 +479,7 @@
   position: absolute;
   top: 55px;
   right: 0;
-  background: #1e293b;
+  background: var(--color-surface);
   min-width: 200px;
   border-radius: 12px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -529,7 +529,7 @@
 }
 
 .dropdown-item.logout {
-  color: #ef4444;
+  color: var(--color-error);
 }
 
 .dropdown-item.logout:hover {
@@ -555,7 +555,7 @@
 }
 
 .signup-btn {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   text-decoration: none;
   font-weight: 700;

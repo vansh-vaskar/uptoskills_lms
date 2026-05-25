@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0f172a;
+  background: var(--color-background);
   color: white;
   padding: 20px;
 }
@@ -11,7 +11,7 @@
 .auth-card {
   width: 100%;
   max-width: 450px;
-  background: #1e293b;
+  background: var(--color-surface);
   padding: 40px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -24,7 +24,7 @@
 }
 
 .brand-icon {
-  color: #f97316;
+  color: var(--color-primary);
   margin-bottom: 20px;
 }
 
@@ -65,13 +65,13 @@
 
 .input-group input:focus {
   outline: none;
-  border-color: #f97316;
+  border-color: var(--color-primary);
   background: rgba(255, 255, 255, 0.05);
 }
 
 .auth-submit-btn {
   width: 100%;
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 16px;
@@ -90,7 +90,7 @@
 
 .auth-error-msg {
   background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  color: var(--color-error);
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 25px;
@@ -106,7 +106,7 @@
 }
 
 .auth-footer a {
-  color: #f97316;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;

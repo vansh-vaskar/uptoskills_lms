@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import '../styles/Contact.css';
 
 const Contact = () => {
@@ -9,6 +10,8 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setSubmitted(false), 5000);
     };
 

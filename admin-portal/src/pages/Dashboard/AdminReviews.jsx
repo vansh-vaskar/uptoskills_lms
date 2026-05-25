@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { Star, User, Trash2 } from "lucide-react";
 
@@ -28,8 +29,9 @@ const AdminReviews = () => {
         try {
             await axios.delete(`http://localhost:5000/api/admin/reviews/${id}`);
             setReviews(reviews.filter(r => r.id !== id));
+            toast.success("Review deleted successfully!");
         } catch (err) {
-            alert("Error deleting review");
+            toast.error("Error deleting review");
         }
     };
 
@@ -53,9 +55,9 @@ const AdminReviews = () => {
                         className="admin-review-card-premium"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        style={{ background: '#1e293b', padding: '25px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: '25px', alignItems: 'start' }}
+                        style={{ background: 'var(--color-surface)', padding: '25px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: '25px', alignItems: 'start' }}
                     >
-                        <div style={{ width: '50px', height: '50px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f97316' }}>
+                        <div style={{ width: '50px', height: '50px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)' }}>
                             <User size={24} />
                         </div>
 
@@ -75,9 +77,9 @@ const AdminReviews = () => {
                         <div className="rev-actions">
                             <button 
                                 onClick={() => handleDelete(rev.id)}
-                                style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', color: '#ef4444', padding: '10px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}
-                                onMouseEnter={(e) => { e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.color = 'white'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.color = '#ef4444'; }}
+                                style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', color: 'var(--color-error)', padding: '10px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}
+                                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-error)'; e.currentTarget.style.color = 'white'; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.color = 'var(--color-error)'; }}
                                 title="Delete Review"
                             >
                                 <Trash2 size={18} />

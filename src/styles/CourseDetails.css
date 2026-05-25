@@ -1,5 +1,5 @@
 .details-page-wrapper {
-  background: #0f172a;
+  background: var(--color-background);
   min-height: 100vh;
 }
 
@@ -30,14 +30,14 @@
 }
 
 .sticky-title span {
-  color: #f97316;
+  color: var(--color-primary);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .sticky-enroll-btn {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 8px 20px;
@@ -83,7 +83,7 @@
 }
 
 .premium-badge {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   padding: 4px 10px;
   border-radius: 4px;
@@ -92,7 +92,7 @@
 }
 
 .topic-tag {
-  color: #38bdf8;
+  color: var(--color-info);
   font-size: 0.8rem;
   font-weight: 700;
   margin-top: 2px;
@@ -134,7 +134,7 @@
 }
 
 .cta-btn-main {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #ea580c 100%);
   color: white;
   border: none;
   padding: 16px 40px;
@@ -169,7 +169,7 @@
   bottom: -40px;
   left: 30px;
   right: 30px;
-  background: #1e293b;
+  background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 16px;
@@ -183,7 +183,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid #f97316;
+  border: 2px solid var(--color-primary);
 }
 
 .ins-info h5 {
@@ -224,7 +224,7 @@
   left: 0;
   width: 40px;
   height: 3px;
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 .rich-text-content {
@@ -249,7 +249,7 @@
 }
 
 .check-icon-m {
-  color: #10b981;
+  color: var(--color-success);
 }
 
 .outcome-item-modern p {
@@ -294,7 +294,7 @@
 }
 
 .play-icon {
-  color: #f97316;
+  color: var(--color-primary);
 }
 
 .c-title {
@@ -342,7 +342,7 @@
 
 .add-review-form textarea {
   width: 100%;
-  background: #0f172a;
+  background: var(--color-background);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 15px;
@@ -353,7 +353,7 @@
 }
 
 .submit-review-btn {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -406,7 +406,7 @@
 }
 
 .sidebar-info-box {
-  background: #1e293b;
+  background: var(--color-surface);
   padding: 30px;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.05);

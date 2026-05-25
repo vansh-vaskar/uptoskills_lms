@@ -5,7 +5,7 @@ import { Bell, Globe, Lock, Palette, Eye, Mail } from "lucide-react";
 const SettingRow = ({ id, icon: Icon, title, desc, active, onToggle }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '25px', background: 'rgba(255,255,255,0.02)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '15px' }}>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <div style={{ width: '48px', height: '48px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f97316' }}>
+            <div style={{ width: '48px', height: '48px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)' }}>
                 <Icon size={22} />
             </div>
             <div>
@@ -19,7 +19,7 @@ const SettingRow = ({ id, icon: Icon, title, desc, active, onToggle }) => (
                 width: '60px',
                 height: '32px',
                 borderRadius: '100px',
-                background: active ? '#f97316' : '#334155',
+                background: active ? 'var(--color-primary)' : '#334155',
                 border: 'none',
                 cursor: 'pointer',
                 position: 'relative',
@@ -59,7 +59,7 @@ const AdminSettings = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', maxWidth: '900px' }}>
                 <section style={{ marginBottom: '40px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: '#f97316', display: 'flex', alignItems: 'center', gap: '10px' }}><Lock size={18} /> Security & Access</h3>
+                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '10px' }}><Lock size={18} /> Security & Access</h3>
                     <SettingRow
                         id="mfa"
                         icon={Shield}
@@ -79,7 +79,7 @@ const AdminSettings = () => {
                 </section>
 
                 <section style={{ marginBottom: '40px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '10px' }}><Bell size={18} /> Notifications</h3>
+                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--color-info)', display: 'flex', alignItems: 'center', gap: '10px' }}><Bell size={18} /> Notifications</h3>
                     <SettingRow
                         id="emailAlerts"
                         icon={Mail}
@@ -91,7 +91,7 @@ const AdminSettings = () => {
                 </section>
 
                 {/* <section>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '10px' }}><Palette size={18} /> Platform Content</h3>
+                    <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '10px' }}><Palette size={18} /> Platform Content</h3>
                     <SettingRow 
                         id="autoPublish" 
                         icon={Eye} 

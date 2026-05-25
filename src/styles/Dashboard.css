@@ -1,7 +1,7 @@
 .student-dashboard-root {
   display: flex;
   min-height: 100vh;
-  background: #0f172a;
+  background: var(--color-background);
   color: white;
 }
 
@@ -16,6 +16,21 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.student-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.student-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.student-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .student-sidebar-header {
@@ -29,7 +44,7 @@
 .student-avatar-big {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #ea580c 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -77,13 +92,15 @@
 }
 
 .student-nav-btn.active {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .student-sidebar-footer {
   padding-top: 20px;
+  margin-top: 30px;
+  padding-bottom: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -95,7 +112,7 @@
   padding: 14px 18px;
   border: none;
   background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  color: var(--color-error);
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
@@ -131,7 +148,7 @@
 }
 
 .strip-card {
-  background: #1e293b;
+  background: var(--color-surface);
   padding: 30px;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -147,7 +164,7 @@
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 10px;
-  color: #f97316;
+  color: var(--color-primary);
 }
 
 .strip-card span {
@@ -165,7 +182,7 @@
 
 .mini-progress div {
   height: 100%;
-  background: #f97316;
+  background: var(--color-primary);
   border-radius: 3px;
 }
 
@@ -182,7 +199,7 @@
 }
 
 .dash-course-card {
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -225,7 +242,7 @@
 
 .d-bar div {
   height: 100%;
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 .d-card-progress span {
@@ -246,7 +263,7 @@
 }
 
 .dash-resume-btn:hover {
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 .certificates-wall {
@@ -256,7 +273,7 @@
 }
 
 .dash-cert-card {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
   padding: 25px;
   border-radius: 24px;
   display: flex;
@@ -282,7 +299,7 @@
 
 .cert-dl-btn {
   margin-left: auto;
-  color: #f97316;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.85rem;
@@ -290,7 +307,7 @@
 
 .profile-edit-pane {
   max-width: 600px;
-  background: #1e293b;
+  background: var(--color-surface);
   padding: 40px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -352,7 +369,7 @@
 .n-dot {
   width: 8px;
   height: 8px;
-  background: #f97316;
+  background: var(--color-primary);
   border-radius: 50%;
   margin-top: 8px;
 }
@@ -368,7 +385,7 @@
 }
 
 .settings-pane {
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 24px;
   overflow: hidden;
 }
@@ -398,7 +415,7 @@
   align-items: center;
   gap: 8px;
   background: rgba(249, 115, 22, 0.1);
-  color: #f97316;
+  color: var(--color-primary);
   border: 1px solid rgba(249, 115, 22, 0.2);
   padding: 8px 16px;
   border-radius: 10px;
@@ -410,13 +427,13 @@
 
 .edit-profile-trigger:hover,
 .save-profile-btn:hover {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
 }
 
 .p-field input.editing {
   background: rgba(255, 255, 255, 0.05);
-  border-color: #f97316;
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -435,7 +452,7 @@
 }
 
 .toggle-btn-p.on {
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 .toggle-slider {

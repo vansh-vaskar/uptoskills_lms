@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../../store/AuthContext";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import "../../styles/CourseDetails.css";
 
 const Icons = {
@@ -19,7 +20,7 @@ const Icons = {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
     ),
     Shield: () => (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
     )
 };
 
@@ -41,10 +42,9 @@ const ReviewForm = ({ courseId, userId, onSuccess }) => {
             setRating(5);
             setComment("");
             onSuccess();
-            setTimeout(() => alert("Course feedback posted successfully!"), 100);
+            toast.success("Course feedback posted successfully!");
         } catch (err) {
-            alert("Feedback recorded.");
-            onSuccess();
+            toast.error("Failed to post feedback.");
         } finally {
             setIsSubmitting(false);
         }
@@ -75,7 +75,7 @@ const ReviewForm = ({ courseId, userId, onSuccess }) => {
 
 const CourseDetails = () => {
     const { id } = useParams();
-    const { user } = useContext(AuthContext);
+    const { user, selectedInstructor } = useContext(AuthContext);
     const [course, setCourse] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -106,12 +106,17 @@ const CourseDetails = () => {
     }, [id, user]);
 
     const handleEnroll = async () => {
-        if (!user) return alert("Please login to enroll");
+        if (!user) {
+            toast.error("Please login to enroll");
+            return;
+        }
         try {
             await axios.post("http://localhost:5000/api/enrollments", { userId: user.id, courseId: course.id });
             setIsEnrolled(true);
+            toast.success("Successfully enrolled in course!");
         } catch (err) {
             console.error(err);
+            toast.error("Failed to enroll in course.");
         }
     };
 
@@ -158,6 +163,10 @@ const CourseDetails = () => {
         return `http://localhost:5000/${cleanPath}`;
     };
 
+    const displayInstructorName = selectedInstructor ? selectedInstructor.name : course.instructor_name;
+    const displayInstructorImage = selectedInstructor ? selectedInstructor.image : course.instructor_image;
+    const displayInstructorBio = selectedInstructor ? selectedInstructor.bio : course.instructor_bio;
+
     return (
         <div className="details-page-wrapper">
             <div className="details-container-premium">
@@ -174,7 +183,7 @@ const CourseDetails = () => {
 
                         <div className="hero-stats-row">
                             <div className="stat-pill">
-                                <Icons.Star fill="#f97316" stroke="#f97316" />
+                                <Icons.Star fill="var(--color-primary)" stroke="var(--color-primary)" />
                                 <span>{course.rating || "0.0"} ({course.rating_count || 0} reviews)</span>
                             </div>
                             <div className="stat-pill">⏱️ {calculateTotalDuration()}</div>
@@ -193,10 +202,10 @@ const CourseDetails = () => {
                     <div className="hero-visual-card">
                         <img src={normalizeUrl(course.image)} alt={course.title} className="hero-img" onError={(e) => e.target.src = "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800"} />
                         <div className="instructor-overlay-card">
-                            <img src={normalizeUrl(course.instructor_image)} alt={course.instructor_name} onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"} />
+                            <img src={normalizeUrl(displayInstructorImage)} alt={displayInstructorName} onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"} />
                             <div className="ins-info">
-                                <h5>{course.instructor_name}</h5>
-                                <p>{course.instructor_bio || "AI Instructor"}</p>
+                                <h5>{displayInstructorName}</h5>
+                                <p>{displayInstructorBio || "AI Instructor"}</p>
                             </div>
                         </div>
                     </div>
@@ -244,12 +253,12 @@ const CourseDetails = () => {
 
                         <section className="details-section instructor-bio-section" style={{ background: 'rgba(255,255,255,0.02)', padding: '40px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '60px' }}>
                             <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
-                                <img src={normalizeUrl(course.instructor_image)} style={{ width: '100px', height: '100px', borderRadius: '24px', border: '2px solid #f97316' }} alt={course.instructor_name} />
+                                <img src={normalizeUrl(displayInstructorImage)} style={{ width: '100px', height: '100px', borderRadius: '24px', border: '2px solid var(--color-primary)' }} alt={displayInstructorName} />
                                 <div>
                                     <h3 style={{ margin: '0 0 10px', fontSize: '1.6rem', position: 'static', padding: 0 }}>Meet Your Instructor</h3>
-                                    <h4 style={{ color: '#f97316', margin: '0 0 15px', fontWeight: 800 }}>{course.instructor_name}</h4>
+                                    <h4 style={{ color: 'var(--color-primary)', margin: '0 0 15px', fontWeight: 800 }}>{displayInstructorName}</h4>
                                     <p style={{ color: '#94a3b8', lineHeight: '1.8', fontSize: '1.05rem' }}>
-                                        {course.instructor_bio || "Dedicated instructor focused on delivering high-quality learning experiences and helping students learn complex technical concepts through practical guidance."}
+                                        {displayInstructorBio || "Dedicated instructor focused on delivering high-quality learning experiences and helping students learn complex technical concepts through practical guidance."}
                                     </p>
                                 </div>
                             </div>
@@ -263,12 +272,12 @@ const CourseDetails = () => {
                                         <ReviewForm key={formKey} courseId={id} userId={user.id} onSuccess={handleReviewSuccess} />
                                     ) : (
                                         <div className="enroll-to-review-msg" style={{ background: 'rgba(249, 115, 22, 0.05)', padding: '20px', borderRadius: '15px', border: '1px dashed rgba(249, 115, 22, 0.2)', marginBottom: '30px', textAlign: 'center' }}>
-                                            <p style={{ margin: 0, color: '#f97316', fontWeight: '500' }}>Only enrolled students can share their experience. Start learning today to post your review!</p>
+                                            <p style={{ margin: 0, color: 'var(--color-primary)', fontWeight: '500' }}>Only enrolled students can share their experience. Start learning today to post your review!</p>
                                         </div>
                                     )
                                 ) : (
                                     <div className="login-to-review-msg" style={{ background: 'rgba(255,255,255,0.02)', padding: '20px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '30px', textAlign: 'center' }}>
-                                        <p style={{ margin: 0, color: '#94a3b8' }}>Please <Link to="/login" style={{ color: '#f97316', textDecoration: 'none', fontWeight: '600' }}>login</Link> to join the discussion.</p>
+                                        <p style={{ margin: 0, color: '#94a3b8' }}>Please <Link to="/login" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: '600' }}>login</Link> to join the discussion.</p>
                                     </div>
                                 )}
 

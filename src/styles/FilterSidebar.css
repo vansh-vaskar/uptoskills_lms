@@ -1,5 +1,5 @@
 .filter-sidebar-premium {
-    background: #1e293b;
+    background: var(--color-surface);
     border-radius: 16px;
     padding: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -24,7 +24,7 @@
 .clear-btn {
     background: none;
     border: none;
-    color: #f97316;
+    color: var(--color-primary);
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -73,8 +73,8 @@
 }
 
 .custom-checkbox input:checked + .checkmark {
-    background: #f97316;
-    border-color: #f97316;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .checkmark::after {

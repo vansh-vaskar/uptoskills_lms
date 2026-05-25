@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../store/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import "../../styles/CoursePlayer.css";
 
 const Icons = {
@@ -35,7 +36,7 @@ const Icons = {
 const CoursePlayer = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+    const { user, selectedInstructor } = useContext(AuthContext);
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
     const [activeLessonIdx, setActiveLessonIdx] = useState(0);
@@ -94,10 +95,11 @@ const CoursePlayer = () => {
                     userId: user.id,
                     courseId: course.id
                 });
-                alert("Course completed! Your certificate is ready in your dashboard.");
+                toast.success("Course completed! Your certificate is ready in your dashboard.");
                 navigate("/dashboard");
             } catch (err) {
                 console.error("Completion error:", err);
+                toast.error("Failed to complete course.");
             }
         }
     };
@@ -124,6 +126,10 @@ const CoursePlayer = () => {
 
     const curriculum = course.curriculum || [];
     const currentLesson = curriculum[activeLessonIdx] || { title: "Introduction", link: "https://www.youtube.com/embed/aircAruvnKk" };
+
+    const displayInstructorName = selectedInstructor ? selectedInstructor.name : course.instructor_name;
+    const displayInstructorImage = selectedInstructor ? selectedInstructor.image : course.instructor_image;
+    const displayInstructorBio = selectedInstructor ? selectedInstructor.bio : course.instructor_bio;
 
     return (
         <div className="modern-player-layout">
@@ -178,7 +184,7 @@ const CoursePlayer = () => {
                 <div className="media-header">
                     <div className="lesson-info">
                         <h2>{currentLesson.title}</h2>
-                        <p>Part {activeLessonIdx + 1} of {curriculum.length} • {course.instructor_name}</p>
+                        <p>Part {activeLessonIdx + 1} of {curriculum.length} • {displayInstructorName}</p>
                     </div>
                     <div className="player-nav-controls">
                         <button
@@ -233,12 +239,12 @@ const CoursePlayer = () => {
                             >
                                 <h3>About this Session</h3>
                                 <p>{course.about}</p>
-                                <p>This session is part of the professional certification track for {course.topic}. Learn from your instructor {course.instructor_name} as they share advanced techniques and practical insights.</p>
+                                <p>This session is part of the professional certification track for {course.topic}. Learn from your instructor {displayInstructorName} as they share advanced techniques and practical insights.</p>
                                 <div className="instructor-mini-bio">
-                                    <img src={normalizeUrl(course.instructor_image)} alt={course.instructor_name} />
+                                    <img src={normalizeUrl(displayInstructorImage)} alt={displayInstructorName} />
                                     <div>
-                                        <strong>{course.instructor_name}</strong>
-                                        <p>{course.instructor_bio}</p>
+                                        <strong>{displayInstructorName}</strong>
+                                        <p>{displayInstructorBio}</p>
                                     </div>
                                 </div>
                             </motion.div>

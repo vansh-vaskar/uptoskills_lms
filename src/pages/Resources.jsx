@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Download, Book } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Resources = () => {
     const studyGuides = [
@@ -12,6 +13,7 @@ const Resources = () => {
     ];
 
     const downloadFile = (name) => {
+        toast.success(`Starting download: ${name}`);
         const wpLink = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
         const link = document.createElement('a');
         link.href = wpLink;
@@ -23,14 +25,14 @@ const Resources = () => {
     };
 
     return (
-        <div className="resources-page-root" style={{ padding: '100px 20px', minHeight: '100vh', background: '#0f172a', color: 'white' }}>
+        <div className="resources-page-root" style={{ padding: '100px 20px', minHeight: '100vh', background: 'var(--color-background)', color: 'white' }}>
             <div style={{ maxWidth: '900px', margin: '0 auto' }}>
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Link to="/" style={{ color: '#f97316', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginBottom: '40px', fontWeight: 600 }}>
+                    <Link to="/" style={{ color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginBottom: '40px', fontWeight: 600 }}>
                         <ArrowLeft size={20} /> Back to Home
                     </Link>
                 </motion.div>
@@ -43,7 +45,7 @@ const Resources = () => {
                 >
                     <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '20px' }}>
                         Study <span style={{
-                            background: 'linear-gradient(to right, #f97316, #10b981)',
+                            background: 'linear-gradient(to right, var(--color-primary), var(--color-success))',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             display: 'inline-block'
@@ -55,7 +57,7 @@ const Resources = () => {
                 </motion.header>
 
                 <motion.div
-                    style={{ background: '#1e293b', padding: '40px', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
+                    style={{ background: 'var(--color-surface)', padding: '40px', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
@@ -79,7 +81,7 @@ const Resources = () => {
                                 </div>
                                 <button
                                     onClick={() => downloadFile(item.name)}
-                                    style={{ background: '#f97316', border: 'none', color: 'white', padding: '10px 18px', borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700, fontSize: '0.9rem' }}
+                                    style={{ background: 'var(--color-primary)', border: 'none', color: 'white', padding: '10px 18px', borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700, fontSize: '0.9rem' }}
                                 >
                                     <Download size={18} /> Download
                                 </button>

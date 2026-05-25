@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Shield, Mail, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import "../../styles/Auth.css";
 
 const ForgotPassword = () => {
@@ -12,6 +13,7 @@ const ForgotPassword = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
+        toast.success("Recovery link sent to your email!");
     };
 
     return (

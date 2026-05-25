@@ -1,5 +1,5 @@
 .main-content {
   min-height: calc(100vh - 70px - 400px);
-  background-color: #0f172a;
+  background-color: var(--color-background);
   position: relative;
 }

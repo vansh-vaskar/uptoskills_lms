@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #0f172a;
+  background-color: var(--color-background);
   color: #f8fafc;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -26,11 +26,11 @@ ul {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 5px;
 }
 

@@ -42,47 +42,47 @@ const AdminReports = () => {
                 </div>
                 <button
                     onClick={handleExport}
-                    style={{ background: '#f97316', color: 'white', border: 'none', padding: '12px 28px', borderRadius: '14px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', boxShadow: '0 10px 20px rgba(249, 115, 22, 0.2)' }}
+                    style={{ background: 'var(--color-primary)', color: 'white', border: 'none', padding: '12px 28px', borderRadius: '14px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', boxShadow: '0 10px 20px rgba(249, 115, 22, 0.2)' }}
                 >
                     <Download size={18} /> Export Analytics
                 </button>
             </header>
 
             <div className="reports-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '25px', marginBottom: '40px' }}>
-                <div className="report-card-premium" style={{ background: '#1e293b', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="report-card-premium" style={{ background: 'var(--color-surface)', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                        <div style={{ width: '48px', height: '48px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8' }}>
+                        <div style={{ width: '48px', height: '48px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-info)' }}>
                             <TrendingUp size={24} />
                         </div>
-                        <span style={{ color: '#10b981', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '5px' }}><ArrowUpRight size={16} /> +12%</span>
+                        <span style={{ color: 'var(--color-success)', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '5px' }}><ArrowUpRight size={16} /> +12%</span>
                     </div>
                     <h4 style={{ color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '1px' }}>Global Reach</h4>
                     <h3 style={{ fontSize: '2.2rem', margin: 0, fontWeight: 900 }}>{stats.totalEnrollments} <span style={{ fontSize: '1rem', color: '#64748b', fontWeight: 500 }}>enrolls</span></h3>
                 </div>
 
-                <div className="report-card-premium" style={{ background: '#1e293b', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="report-card-premium" style={{ background: 'var(--color-surface)', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                        <div style={{ width: '48px', height: '48px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f97316' }}>
+                        <div style={{ width: '48px', height: '48px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)' }}>
                             <Users size={24} />
                         </div>
-                        <span style={{ color: '#10b981', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '5px' }}><ArrowUpRight size={16} /> +8%</span>
+                        <span style={{ color: 'var(--color-success)', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '5px' }}><ArrowUpRight size={16} /> +8%</span>
                     </div>
                     <h4 style={{ color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '1px' }}>Total Learners</h4>
                     <h3 style={{ fontSize: '2.2rem', margin: 0, fontWeight: 900 }}>{stats.totalStudents} <span style={{ fontSize: '1rem', color: '#64748b', fontWeight: 500 }}>active</span></h3>
                 </div>
             </div>
 
-            <section style={{ background: '#1e293b', padding: '40px', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <section style={{ background: 'var(--color-surface)', padding: '40px', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px' }}>
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Activity size={20} color="#f97316" /> Enrollment Trends</h3>
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Activity size={20} color="var(--color-primary)" /> Enrollment Trends</h3>
                     <div style={{ display: 'flex', background: 'rgba(15, 23, 42, 0.5)', padding: '5px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
                         <button
                             onClick={() => setTrendType('monthly')}
-                            style={{ background: trendType === 'monthly' ? '#f97316' : 'transparent', color: trendType === 'monthly' ? 'white' : '#64748b', border: 'none', padding: '8px 20px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}
+                            style={{ background: trendType === 'monthly' ? 'var(--color-primary)' : 'transparent', color: trendType === 'monthly' ? 'white' : '#64748b', border: 'none', padding: '8px 20px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}
                         >Monthly</button>
                         <button
                             onClick={() => setTrendType('weekly')}
-                            style={{ background: trendType === 'weekly' ? '#f97316' : 'transparent', color: trendType === 'weekly' ? 'white' : '#64748b', border: 'none', padding: '8px 20px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}
+                            style={{ background: trendType === 'weekly' ? 'var(--color-primary)' : 'transparent', color: trendType === 'weekly' ? 'white' : '#64748b', border: 'none', padding: '8px 20px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}
                         >Weekly</button>
                     </div>
                 </div>
@@ -119,20 +119,20 @@ const AdminReports = () => {
                                 cx={(i * 1000) / (currentData.length - 1)}
                                 cy={300 - (d.value * 2.5)}
                                 r="6"
-                                fill="#1e293b"
-                                stroke="#f97316"
+                                fill="var(--color-surface)"
+                                stroke="var(--color-primary)"
                                 strokeWidth="3"
                             />
                         ))}
 
                         <defs>
                             <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stopColor="#f97316" />
-                                <stop offset="100%" stopColor="#38bdf8" />
+                                <stop offset="0%" stopColor="var(--color-primary)" />
+                                <stop offset="100%" stopColor="var(--color-info)" />
                             </linearGradient>
                             <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#f97316" stopOpacity="0.2" />
-                                <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
+                                <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.2" />
+                                <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
                             </linearGradient>
                         </defs>
                     </svg>

@@ -1,5 +1,5 @@
 .contact-container {
-    background: #0f172a;
+    background: var(--color-background);
     color: white;
     padding: 100px 8%;
     min-height: 80vh;
@@ -30,7 +30,7 @@
 }
 
 .info-card {
-    background: #1e293b;
+    background: var(--color-surface);
     padding: 25px;
     border-radius: 20px;
     display: flex;
@@ -54,7 +54,7 @@
 
 .info-text h4 {
     margin: 0 0 5px;
-    color: #f97316;
+    color: var(--color-primary);
     font-size: 1.1rem;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .contact-form-wrapper {
-    background: #1e293b;
+    background: var(--color-surface);
     padding: 50px;
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -86,7 +86,7 @@
 .form-group-modern textarea {
     width: 100%;
     padding: 15px;
-    background: #0f172a;
+    background: var(--color-background);
     border: 1px solid #334155;
     border-radius: 12px;
     color: white;
@@ -97,7 +97,7 @@
 .form-group-modern input:focus, 
 .form-group-modern textarea:focus {
     outline: none;
-    border-color: #f97316;
+    border-color: var(--color-primary);
 }
 
 .success-message {

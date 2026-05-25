@@ -41,6 +41,12 @@ const Icons = {
     ),
     UserCircle: () => (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+    ),
+    ClipboardList: () => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+    ),
+    Award: () => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
     )
 };
 
@@ -54,7 +60,9 @@ const AdminLayout = ({ children }) => {
     const menuItems = [
         { name: "Overview", path: "/", icon: Icons.LayoutDashboard },
         { name: "Students", path: "/students", icon: Icons.Users },
+        { name: "Tasks", path: "/tasks", icon: Icons.ClipboardList },
         { name: "Courses", path: "/courses", icon: Icons.BookOpen },
+        { name: "Instructors", path: "/instructors", icon: Icons.Award },
         { name: "Enrollments", path: "/enrollments", icon: Icons.GraduationCap },
         { name: "Reports", path: "/reports", icon: Icons.BarChart },
         { name: "Reviews", path: "/reviews", icon: Icons.MessageSquare },

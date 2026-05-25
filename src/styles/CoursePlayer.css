@@ -2,12 +2,12 @@
   display: grid;
   grid-template-columns: 350px 1fr;
   height: calc(100vh - 70px);
-  background: #0f172a;
+  background: var(--color-background);
   overflow: hidden;
 }
 
 .player-sidebar-premium {
-  background: #1e293b;
+  background: var(--color-surface);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@
 
 .progress-bar-mini {
   height: 100%;
-  background: #f97316;
+  background: var(--color-primary);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -80,7 +80,7 @@
 
 .lesson-item-flat.active {
   background: rgba(249, 115, 22, 0.1);
-  border-left-color: #f97316;
+  border-left-color: var(--color-primary);
 }
 
 .l-idx-box {
@@ -97,12 +97,12 @@
 }
 
 .lesson-item-flat.active .l-idx-box {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
 }
 
 .l-idx-box .done {
-  color: #10b981;
+  color: var(--color-success);
 }
 
 .l-content-box {
@@ -139,7 +139,7 @@
 
 .complete-all-btn {
   width: 100%;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #ea580c 100%);
   color: white;
   border: none;
   padding: 12px;
@@ -157,7 +157,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 40px;
-  background: #0f172a;
+  background: var(--color-background);
 }
 
 .media-header {
@@ -197,8 +197,8 @@
 }
 
 .nav-control-btn:hover:not(:disabled) {
-  background: #f97316;
-  border-color: #f97316;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
@@ -243,7 +243,7 @@
 }
 
 .tab-btn-p.active {
-  color: #f97316;
+  color: var(--color-primary);
 }
 
 .tab-btn-p.active::after {
@@ -253,7 +253,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 .tab-content-area-player h3 {
@@ -281,7 +281,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 2px solid #f97316;
+  border: 2px solid var(--color-primary);
 }
 
 .instructor-mini-bio strong {
@@ -296,7 +296,7 @@
 
 .player-notes-area {
   width: 100%;
-  background: #1e293b;
+  background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 20px;
@@ -323,7 +323,7 @@
 }
 
 .res-icon {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   width: 50px;
   height: 50px;
@@ -363,7 +363,7 @@
 }
 
 .res-dl-btn:hover {
-  background: #f97316;
+  background: var(--color-primary);
 }
 
 @media (max-width: 1024px) {

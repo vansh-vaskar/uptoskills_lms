@@ -1,5 +1,5 @@
 .home-container {
-    background: #0f172a;
+    background: var(--color-background);
     color: white;
     overflow-x: hidden;
 }
@@ -19,7 +19,7 @@
     padding: 8px 16px;
     background: rgba(249, 115, 22, 0.1);
     border: 1px solid rgba(249, 115, 22, 0.3);
-    color: #f97316;
+    color: var(--color-primary);
     border-radius: 100px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -55,7 +55,7 @@
 
 .btn-primary-large {
     padding: 16px 32px;
-    background: #f97316;
+    background: var(--color-primary);
     color: white;
     text-decoration: none;
     border-radius: 12px;
@@ -206,10 +206,9 @@
     color: #00bfa5;
 }
 
-/* Features Section */
 .features-section {
     padding: 100px 8%;
-    background: #0f172a;
+    background: var(--color-background);
 }
 
 .section-header {
@@ -234,7 +233,7 @@
 }
 
 .feature-card {
-    background: #1e293b;
+    background: var(--color-surface);
     padding: 40px;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -263,7 +262,7 @@
 }
 
 .cta-box {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
     padding: 80px;
     border-radius: 40px;
     text-align: center;

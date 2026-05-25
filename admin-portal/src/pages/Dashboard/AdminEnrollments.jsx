@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import "../../styles/AdminStudents.css";
 
 const Icons = {
@@ -33,8 +34,9 @@ const AdminEnrollments = () => {
             try {
                 await axios.delete(`http://localhost:5000/api/admin/enrollments/${id}`);
                 setEnrollments(enrollments.filter(e => e.id !== id));
+                toast.success("Enrollment removed successfully!");
             } catch (err) {
-                alert("Failed to delete enrollment.");
+                toast.error("Failed to delete enrollment.");
             }
         }
     };
@@ -94,7 +96,7 @@ const AdminEnrollments = () => {
                                 <td>
                                     <div className="progress-mini-wrapper" style={{ width: '100px' }}>
                                         <div className="progress-mini-bg" style={{ height: '4px', background: 'rgba(255,255,255,0.05)', borderRadius: '2px' }}>
-                                            <div className="progress-mini-fill" style={{ width: `${e.progress}%`, height: '100%', background: '#f97316', borderRadius: '2px' }}></div>
+                                            <div className="progress-mini-fill" style={{ width: `${e.progress}%`, height: '100%', background: 'var(--color-primary)', borderRadius: '2px' }}></div>
                                         </div>
                                         <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{e.progress}%</span>
                                     </div>

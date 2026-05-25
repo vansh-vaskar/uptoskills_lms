@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../store/AuthContext';
 import '../../styles/CourseCard.css';
 
 const CourseCard = ({ course }) => {
     const navigate = useNavigate();
+    const { selectedInstructor } = useContext(AuthContext);
+
+    const displayInstructorName = selectedInstructor ? selectedInstructor.name : course.instructor_name;
+    const displayInstructorImage = selectedInstructor ? selectedInstructor.image : course.instructor_image;
 
     const normalizeUrl = (url) => {
         if (!url) return "";
@@ -49,8 +54,8 @@ const CourseCard = ({ course }) => {
 
             <div className="card-content">
                 <div className="instructor-mini">
-                    <img src={normalizeUrl(course.instructor_image)} alt={course.instructor_name} className="mini-avatar" onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50"} />
-                    <span>{course.instructor_name}</span>
+                    <img src={normalizeUrl(displayInstructorImage)} alt={displayInstructorName} className="mini-avatar" onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50"} />
+                    <span>{displayInstructorName}</span>
                 </div>
 
                 <h3 className="card-title">{course.title}</h3>

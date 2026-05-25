@@ -35,7 +35,7 @@
 }
 
 .add-course-btn {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 14px 28px;
@@ -78,7 +78,7 @@
 
 .table-search:focus-within {
   background: rgba(255, 255, 255, 0.05);
-  border-color: #f97316;
+  border-color: var(--color-primary);
 }
 
 .table-search input {
@@ -95,7 +95,7 @@
 }
 
 .admin-table-wrapper {
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
@@ -174,7 +174,7 @@
 
 .topic-badge {
   background: rgba(56, 189, 248, 0.1);
-  color: #38bdf8;
+  color: var(--color-info);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -184,7 +184,7 @@
 
 .rating-pill {
   background: rgba(249, 115, 22, 0.1);
-  color: #f97316;
+  color: var(--color-primary);
   padding: 6px 12px;
   border-radius: 10px;
   font-weight: 800;
@@ -224,17 +224,17 @@
 }
 
 .action-btn.edit:hover {
-  color: #38bdf8;
+  color: var(--color-info);
   border-color: rgba(56, 189, 248, 0.3);
 }
 
 .action-btn.delete:hover {
-  color: #ef4444;
+  color: var(--color-error);
   border-color: rgba(239, 68, 68, 0.3);
 }
 
 .action-btn.view:hover {
-  color: #f97316;
+  color: var(--color-primary);
   border-color: rgba(249, 115, 22, 0.3);
 }
 
@@ -254,7 +254,7 @@
 }
 
 .admin-modal-card-scrollable {
-  background: #1e293b;
+  background: var(--color-surface);
   width: 100%;
   max-width: 950px;
   max-height: 90vh;
@@ -293,7 +293,7 @@
 .modal-header-sticky h2 {
   font-size: 1.8rem;
   margin: 0;
-  background: linear-gradient(to right, #f97316, #10b981);
+  background: linear-gradient(to right, var(--color-primary), var(--color-success));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
@@ -315,7 +315,7 @@
 
 .close-modal-btn:hover {
   background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  color: var(--color-error);
   border-color: rgba(239, 68, 68, 0.2);
   transform: rotate(90deg);
 }
@@ -334,7 +334,7 @@
   gap: 15px;
   margin-bottom: 25px;
   font-size: 1.2rem;
-  color: #f97316;
+  color: var(--color-primary);
   font-weight: 800;
 }
 
@@ -376,7 +376,7 @@
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #f97316;
+  border-color: var(--color-primary);
   background: rgba(15, 23, 42, 0.8);
   box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
 }
@@ -401,7 +401,7 @@
 
 .row-delete {
   background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  color: var(--color-error);
   border: 1px solid rgba(239, 68, 68, 0.2);
   width: 40px;
   height: 40px;
@@ -414,14 +414,14 @@
 }
 
 .row-delete:hover {
-  background: #ef4444;
+  background: var(--color-error);
   color: white;
 }
 
 .add-video-row-btn {
   margin-top: 15px;
   background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+  color: var(--color-success);
   border: 2px dashed rgba(16, 185, 129, 0.3);
   padding: 14px;
   border-radius: 16px;
@@ -437,7 +437,7 @@
 
 .add-video-row-btn:hover {
   background: rgba(16, 185, 129, 0.15);
-  border-color: #10b981;
+  border-color: var(--color-success);
 }
 
 .modal-footer-sticky {
@@ -462,11 +462,11 @@
 
 .modal-discard-btn:hover {
   background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  color: var(--color-error);
 }
 
 .modal-submit-btn {
-  background: #f97316;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 14px 35px;

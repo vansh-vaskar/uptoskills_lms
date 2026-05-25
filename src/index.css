@@ -2,7 +2,7 @@ body {
     font-family: 'Inter', 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0f172a;
+    background-color: var(--color-background);
     color: white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -17,11 +17,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--color-surface);
   border-radius: 10px;
 }
 

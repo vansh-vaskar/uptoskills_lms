@@ -17,7 +17,7 @@
 }
 
 .text-orange {
-    color: #f97316;
+    color: var(--color-primary);
 }
 
 .text-teal {

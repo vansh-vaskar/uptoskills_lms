@@ -3,6 +3,7 @@ import { AuthContext } from "../../store/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import "../../styles/Dashboard.css";
 
 const Icons = {
@@ -11,15 +12,18 @@ const Icons = {
     User: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>,
     Settings: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
     Bell: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>,
+    ClipboardList: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>,
     LogOut: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>,
     Edit: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>,
-    Check: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    Check: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>,
+    Star: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
 };
 
 const Dashboard = () => {
-    const { user, login, logout } = useContext(AuthContext);
+    const { user, login, logout, instructors, selectedInstructor, changeInstructor } = useContext(AuthContext);
     const navigate = useNavigate();
     const [enrollments, setEnrollments] = useState([]);
+    const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState("learning");
 
@@ -41,12 +45,30 @@ const Dashboard = () => {
 
     const fetchDashboardData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/enrollments/${user.id}`);
-            setEnrollments(response.data);
+            const [enrollsRes, tasksRes] = await Promise.all([
+                axios.get(`http://localhost:5000/api/enrollments/${user.id}`),
+                axios.get(`http://localhost:5000/api/tasks/user/${user.id}`)
+            ]);
+            setEnrollments(enrollsRes.data);
+            setTasks(tasksRes.data);
         } catch (err) {
             console.error("Error fetching dashboard data:", err);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleTaskAction = async (taskId, newStatus, submissionLink = null) => {
+        try {
+            await axios.put(`http://localhost:5000/api/tasks/${taskId}/status`, {
+                status: newStatus,
+                submission_link: submissionLink
+            });
+            setTasks(tasks.map(t => t.id === taskId ? { ...t, status: newStatus, submission_link: submissionLink || t.submission_link } : t));
+            toast.success("Task updated successfully!");
+        } catch (err) {
+            console.error("Error updating task status:", err);
+            toast.error("Failed to update task.");
         }
     };
 
@@ -61,9 +83,9 @@ const Dashboard = () => {
             });
             login({ ...user, fullName: profileData.fullName, email: profileData.email });
             setIsEditingProfile(false);
-            alert("Profile updated successfully!");
+            toast.success("Profile updated successfully!");
         } catch (err) {
-            alert("Error updating profile.");
+            toast.error("Error updating profile.");
         } finally {
             setSavingProfile(false);
         }
@@ -127,6 +149,8 @@ const Dashboard = () => {
 
     const menuItems = [
         { id: "learning", name: "My Learning", icon: <Icons.Book /> },
+        { id: "instructor", name: "Choose Celebrity", icon: <Icons.Star /> },
+        { id: "tasks", name: "My Tasks", icon: <Icons.ClipboardList /> },
         { id: "certificates", name: "Certificates", icon: <Icons.Award /> },
         { id: "profile", name: "My Profile", icon: <Icons.User /> },
         { id: "notifications", name: "Updates", icon: <Icons.Bell /> },
@@ -142,6 +166,51 @@ const Dashboard = () => {
                         <h4>{user.fullName}</h4>
                         <span>Student</span>
                     </div>
+                </div>
+
+                <div className="instructor-sidebar-badge" style={{
+                    margin: '10px 15px 20px 15px',
+                    padding: '10px 12px',
+                    background: selectedInstructor ? 'rgba(249, 115, 22, 0.05)' : 'rgba(255, 255, 255, 0.02)',
+                    border: selectedInstructor ? '1px solid rgba(249, 115, 22, 0.15)' : '1px dashed rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                }}>
+                    {selectedInstructor ? (
+                        <>
+                            <img 
+                                src={normalizeUrl(selectedInstructor.image)} 
+                                alt={selectedInstructor.name} 
+                                style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-primary)' }}
+                                onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32"}
+                            />
+                            <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                                <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: 'var(--color-primary)', fontWeight: 800 }}>Taught By</span>
+                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{selectedInstructor.name}</span>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '0.9rem'
+                            }}>
+                                🎓
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                                <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: '#94a3b8', fontWeight: 800 }}>Taught By</span>
+                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#94a3b8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Standard Faculty</span>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <nav className="student-nav">
@@ -225,6 +294,92 @@ const Dashboard = () => {
                             </motion.div>
                         )}
 
+                        {activeTab === 'tasks' && (
+                            <motion.div
+                                key="tasks"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                className="tab-pane"
+                            >
+                                <div className="certificates-wall" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                    {tasks.length === 0 ? (
+                                        <div className="pane-empty">
+                                            <Icons.ClipboardList />
+                                            <p>You have no assigned tasks right now.</p>
+                                        </div>
+                                    ) : (
+                                        tasks.map(task => (
+                                            <div key={task.id} style={{ background: 'var(--color-surface)', padding: '24px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                    <div>
+                                                        <h4 style={{ margin: '0 0 8px', fontSize: '1.2rem' }}>{task.title}</h4>
+                                                        <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.95rem' }}>{task.description}</p>
+                                                    </div>
+                                                    <span style={{
+                                                        padding: '4px 12px',
+                                                        borderRadius: '20px',
+                                                        fontSize: '0.8rem',
+                                                        fontWeight: 700,
+                                                        background: task.status === 'completed' ? 'rgba(16, 185, 129, 0.1)' : task.status === 'in_progress' ? 'rgba(56, 189, 248, 0.1)' : 'rgba(249, 115, 22, 0.1)',
+                                                        color: task.status === 'completed' ? 'var(--color-success)' : task.status === 'in_progress' ? 'var(--color-info)' : 'var(--color-primary)'
+                                                    }}>
+                                                        {task.status.replace('_', ' ').toUpperCase()}
+                                                    </span>
+                                                </div>
+
+                                                <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: '#64748b' }}>
+                                                    {task.due_date && <span>Due: {new Date(task.due_date).toLocaleDateString()}</span>}
+                                                    <span>Assigned: {new Date(task.created_at).toLocaleDateString()}</span>
+                                                </div>
+
+                                                <div style={{ marginTop: '10px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                                                    {task.status === 'pending' && (
+                                                        <button
+                                                            onClick={() => handleTaskAction(task.id, 'in_progress')}
+                                                            style={{ background: 'var(--color-info)', color: 'var(--color-background)', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}
+                                                        >
+                                                            Start Task
+                                                        </button>
+                                                    )}
+
+                                                    {task.status === 'in_progress' && (
+                                                        <form onSubmit={(e) => {
+                                                            e.preventDefault();
+                                                            const link = e.target.elements.link.value;
+                                                            if (link) handleTaskAction(task.id, 'completed', link);
+                                                        }} style={{ display: 'flex', gap: '10px' }}>
+                                                            <input
+                                                                type="text"
+                                                                name="link"
+                                                                required
+                                                                placeholder="Enter link to Google Doc, GitHub, Zip file, etc..."
+                                                                style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: 'white' }}
+                                                            />
+                                                            <button
+                                                                type="submit"
+                                                                style={{ background: 'var(--color-success)', color: 'white', border: 'none', padding: '10px 24px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}
+                                                            >
+                                                                Submit Task
+                                                            </button>
+                                                        </form>
+                                                    )}
+
+                                                    {task.status === 'completed' && task.submission_link && (
+                                                        <div>
+                                                            <p style={{ margin: '0 0 5px', fontSize: '0.85rem', color: '#94a3b8' }}>Your Submission:</p>
+                                                            <a href={task.submission_link} target="_blank" rel="noreferrer" style={{ color: 'var(--color-info)', textDecoration: 'none' }}>
+                                                                {task.submission_link}
+                                                            </a>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+
                         {activeTab === 'certificates' && (
                             <motion.div
                                 key="certificates"
@@ -246,7 +401,7 @@ const Dashboard = () => {
                                                     <h4>{e.course_title}</h4>
                                                     <p>Issued on {new Date(e.enrolled_at).toLocaleDateString()}</p>
                                                 </div>
-                                                <a href={e.certificate_url} target="_blank" rel="noreferrer" className="cert-dl-btn">Download PDF</a>
+                                                <a href={`/certificate/${e.id}`} target="_blank" rel="noreferrer" className="cert-dl-btn">View & Download</a>
                                             </div>
                                         ))
                                     )}
@@ -302,15 +457,15 @@ const Dashboard = () => {
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
                                             <div style={{ flex: '1', minWidth: '250px' }}>
                                                 <h4 style={{ margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', fontWeight: 800 }}>
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                                                     Account Security
                                                 </h4>
                                                 <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0 }}>Update your password regularly to keep your learning account safe.</p>
                                             </div>
                                             <Link to="/forgot-password" style={{ textDecoration: 'none' }}>
                                                 <button style={{
-                                                    background: '#1e293b',
-                                                    color: '#f97316',
+                                                    background: 'var(--color-surface)',
+                                                    color: 'var(--color-primary)',
                                                     border: '2px solid rgba(249, 115, 22, 0.3)',
                                                     padding: '12px 28px',
                                                     borderRadius: '14px',
@@ -391,6 +546,270 @@ const Dashboard = () => {
                                             <span>{settings.publicProfile ? 'ON' : 'OFF'}</span>
                                         </button>
                                     </div>
+                                </div>
+                            </motion.div>
+                        )}
+                        {activeTab === 'instructor' && (
+                            <motion.div
+                                key="instructor"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                className="tab-pane"
+                            >
+                                <div className="celebrity-picker-header" style={{ marginBottom: '30px' }}>
+                                    <h3 style={{ margin: '0 0 10px 0', fontSize: '1.8rem', fontWeight: 800 }}>Choose Your Celebrity Instructor</h3>
+                                    <p style={{ color: '#94a3b8', margin: 0 }}>Select any pop sensation or industry icon you want. Through advanced real-time AI generation, they will dynamically teach all your courses!</p>
+                                </div>
+
+                                {selectedInstructor ? (
+                                    <div className="current-instructor-hero" style={{
+                                        background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%)',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        padding: '30px',
+                                        borderRadius: '24px',
+                                        display: 'flex',
+                                        gap: '30px',
+                                        alignItems: 'center',
+                                        marginBottom: '40px',
+                                        position: 'relative',
+                                        overflow: 'hidden'
+                                    }}>
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '-50px',
+                                            right: '-50px',
+                                            width: '200px',
+                                            height: '200px',
+                                            background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 70%)',
+                                            opacity: 0.15,
+                                            filter: 'blur(30px)',
+                                            pointerEvents: 'none'
+                                        }}></div>
+                                        <img 
+                                            src={normalizeUrl(selectedInstructor.image)} 
+                                            alt={selectedInstructor.name} 
+                                            style={{
+                                                width: '120px',
+                                                height: '120px',
+                                                borderRadius: '24px',
+                                                objectFit: 'cover',
+                                                border: '3px solid var(--color-primary)',
+                                                boxShadow: '0 8px 30px rgba(249, 115, 22, 0.3)'
+                                            }}
+                                            onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120"}
+                                        />
+                                        <div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '1px' }}>Current Teacher</span>
+                                            <h4 style={{ margin: '5px 0 10px 0', fontSize: '1.8rem', fontWeight: 800 }}>{selectedInstructor.name}</h4>
+                                            <p style={{ margin: 0, color: '#e2e8f0', lineHeight: '1.6', fontSize: '1rem' }}>{selectedInstructor.bio}</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="current-instructor-hero" style={{
+                                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                                        border: '1px dashed rgba(255, 255, 255, 0.15)',
+                                        padding: '30px',
+                                        borderRadius: '24px',
+                                        display: 'flex',
+                                        gap: '30px',
+                                        alignItems: 'center',
+                                        marginBottom: '40px',
+                                        position: 'relative',
+                                        overflow: 'hidden'
+                                    }}>
+                                        <div style={{
+                                            width: '120px',
+                                            height: '120px',
+                                            borderRadius: '24px',
+                                            background: 'rgba(255, 255, 255, 0.05)',
+                                            border: '1px dashed rgba(255, 255, 255, 0.2)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '2.5rem',
+                                            color: '#94a3b8'
+                                        }}>
+                                            🎓
+                                        </div>
+                                        <div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px' }}>Current Teacher</span>
+                                            <h4 style={{ margin: '5px 0 10px 0', fontSize: '1.8rem', fontWeight: 800 }}>Standard Course Faculty</h4>
+                                            <p style={{ margin: 0, color: '#94a3b8', lineHeight: '1.6', fontSize: '1rem' }}>You have not selected a celebrity instructor yet. All courses are currently taught by their default standard faculty. Pick a celebrity below to change this!</p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="celebrity-grid" style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                                    gap: '25px'
+                                }}>
+                                    <motion.div
+                                        whileHover={{ y: -6, scale: 1.02 }}
+                                        style={{
+                                            background: !selectedInstructor ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.01)',
+                                            border: !selectedInstructor ? '2px solid var(--color-primary)' : '1px solid rgba(255, 255, 255, 0.05)',
+                                            borderRadius: '20px',
+                                            padding: '20px',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            boxShadow: !selectedInstructor ? '0 10px 30px rgba(249, 115, 22, 0.15)' : 'none'
+                                        }}
+                                        onClick={async () => {
+                                            if (!selectedInstructor) return;
+                                            try {
+                                                await changeInstructor(null);
+                                                toast.success("Switched back to Standard Course Faculty!");
+                                            } catch (err) {
+                                                toast.error("Failed to reset to Standard Course Faculty.");
+                                            }
+                                        }}
+                                    >
+                                        <div style={{ position: 'relative', marginBottom: '15px' }}>
+                                            <div style={{
+                                                width: '100px',
+                                                height: '100px',
+                                                borderRadius: '50%',
+                                                background: 'rgba(255, 255, 255, 0.05)',
+                                                border: !selectedInstructor ? '3px solid var(--color-primary)' : '2px solid rgba(255, 255, 255, 0.1)',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                fontSize: '2.2rem',
+                                                color: !selectedInstructor ? 'var(--color-primary)' : '#94a3b8'
+                                            }}>
+                                                🎓
+                                            </div>
+                                            {!selectedInstructor && (
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    bottom: '0',
+                                                    right: '0',
+                                                    background: 'var(--color-primary)',
+                                                    color: 'white',
+                                                    borderRadius: '50%',
+                                                    width: '24px',
+                                                    height: '24px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    fontSize: '0.8rem',
+                                                    fontWeight: 'bold',
+                                                    boxShadow: '0 2px 8px rgba(0,0,0,0.4)'
+                                                }}>
+                                                    ✓
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h4 style={{ margin: '0 0 8px 0', fontSize: '1.2rem', fontWeight: 'bold' }}>Standard Faculty</h4>
+                                        <p style={{ margin: '0', color: '#94a3b8', fontSize: '0.85rem', lineHeight: '1.5', flex: 1 }}>Default instructors specifically assigned to each individual course curriculum.</p>
+                                        
+                                        <button style={{
+                                            marginTop: '20px',
+                                            background: !selectedInstructor ? 'var(--color-primary)' : 'rgba(255, 255, 255, 0.05)',
+                                            color: !selectedInstructor ? 'white' : '#cbd5e1',
+                                            border: 'none',
+                                            padding: '10px 20px',
+                                            borderRadius: '10px',
+                                            fontSize: '0.85rem',
+                                            fontWeight: 700,
+                                            cursor: 'pointer',
+                                            width: '100%',
+                                            transition: 'all 0.3s'
+                                        }}>
+                                            {!selectedInstructor ? "Currently Active" : "Select Default"}
+                                        </button>
+                                    </motion.div>
+
+                                    {instructors.map((inst) => {
+                                        const isSelected = selectedInstructor && selectedInstructor.id === inst.id;
+                                        return (
+                                            <motion.div
+                                                key={inst.id}
+                                                whileHover={{ y: -6, scale: 1.02 }}
+                                                style={{
+                                                    background: isSelected ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.01)',
+                                                    border: isSelected ? '2px solid var(--color-primary)' : '1px solid rgba(255, 255, 255, 0.05)',
+                                                    borderRadius: '20px',
+                                                    padding: '20px',
+                                                    cursor: 'pointer',
+                                                    transition: 'all 0.3s ease',
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    textAlign: 'center',
+                                                    boxShadow: isSelected ? '0 10px 30px rgba(249, 115, 22, 0.15)' : 'none'
+                                                }}
+                                                onClick={async () => {
+                                                    if (isSelected) return;
+                                                    try {
+                                                        await changeInstructor(inst.id);
+                                                        toast.success(`${inst.name} is now your celebrity instructor!`);
+                                                    } catch (err) {
+                                                        toast.error("Failed to select celebrity instructor.");
+                                                    }
+                                                }}
+                                            >
+                                                <div style={{ position: 'relative', marginBottom: '15px' }}>
+                                                    <img
+                                                        src={normalizeUrl(inst.image)}
+                                                        alt={inst.name}
+                                                        style={{
+                                                            width: '100px',
+                                                            height: '100px',
+                                                            borderRadius: '50%',
+                                                            objectFit: 'cover',
+                                                            border: isSelected ? '3px solid var(--color-primary)' : '2px solid rgba(255, 255, 255, 0.1)'
+                                                        }}
+                                                        onError={(e) => e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"}
+                                                    />
+                                                    {isSelected && (
+                                                        <div style={{
+                                                            position: 'absolute',
+                                                            bottom: '0',
+                                                            right: '0',
+                                                            background: 'var(--color-primary)',
+                                                            color: 'white',
+                                                            borderRadius: '50%',
+                                                            width: '24px',
+                                                            height: '24px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            fontSize: '0.8rem',
+                                                            fontWeight: 'bold',
+                                                            boxShadow: '0 2px 8px rgba(0,0,0,0.4)'
+                                                        }}>
+                                                            ✓
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <h4 style={{ margin: '0 0 8px 0', fontSize: '1.2rem', fontWeight: 'bold' }}>{inst.name}</h4>
+                                                <p style={{ margin: '0', color: '#94a3b8', fontSize: '0.85rem', lineHeight: '1.5', flex: 1 }}>{inst.bio}</p>
+                                                
+                                                <button style={{
+                                                    marginTop: '20px',
+                                                    background: isSelected ? 'var(--color-primary)' : 'rgba(255, 255, 255, 0.05)',
+                                                    color: isSelected ? 'white' : '#cbd5e1',
+                                                    border: 'none',
+                                                    padding: '10px 20px',
+                                                    borderRadius: '10px',
+                                                    fontSize: '0.85rem',
+                                                    fontWeight: 700,
+                                                    cursor: 'pointer',
+                                                    width: '100%',
+                                                    transition: 'all 0.3s'
+                                                }}>
+                                                    {isSelected ? "Currently Active" : "Select Instructor"}
+                                                </button>
+                                            </motion.div>
+                                        );
+                                    })}
                                 </div>
                             </motion.div>
                         )}

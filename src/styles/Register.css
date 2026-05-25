@@ -1,7 +1,7 @@
 :root {
-  --primary-bg: #0f172a;
-  --secondary-bg: #1e293b;
-  --accent-color: #f97316;
+  --primary-bg: var(--color-background);
+  --secondary-bg: var(--color-surface);
+  --accent-color: var(--color-primary);
   --accent-hover: #ea580c;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;

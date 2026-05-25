@@ -3,12 +3,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0f172a;
+    background: var(--color-background);
     padding: 20px;
 }
 
 .auth-box {
-    background: #1e293b;
+    background: var(--color-surface);
     padding: 40px;
     border-radius: 24px;
     width: 100%;
@@ -58,7 +58,7 @@
 .form-group select {
     width: 100%;
     padding: 12px 16px;
-    background: #0f172a;
+    background: var(--color-background);
     border: 1px solid #334155;
     border-radius: 12px;
     color: white;
@@ -68,14 +68,14 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #f97316;
+    border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
 }
 
 .forgot-password-link {
     display: block;
     text-align: right;
-    color: #f97316;
+    color: var(--color-primary);
     font-size: 0.85rem;
     font-weight: 600;
     margin-top: -10px;
@@ -86,7 +86,7 @@
 .auth-btn {
     width: 100%;
     padding: 14px;
-    background: #f97316;
+    background: var(--color-primary);
     color: white;
     border: none;
     border-radius: 12px;
@@ -109,7 +109,7 @@
 }
 
 .auth-footer a {
-    color: #f97316;
+    color: var(--color-primary);
     font-weight: 700;
     text-decoration: none;
 }
@@ -126,8 +126,8 @@
 
 .error-msg-box {
     background: rgba(239, 68, 68, 0.1);
-    border: 1px solid #ef4444;
-    color: #ef4444;
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
     padding: 12px;
     border-radius: 10px;
     font-size: 0.9rem;
@@ -143,4 +143,84 @@
     .full-width {
         grid-column: span 1;
     }
+}
+
+.form-group label .required-asterisk {
+    color: var(--color-error);
+    margin-left: 4px;
+}
+
+.input-valid {
+    border-color: var(--color-success) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px !important;
+}
+
+.input-invalid {
+    border-color: var(--color-error) !important;
+}
+
+.inline-error {
+    color: var(--color-error);
+    font-size: 0.8rem;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Password Strength Meter */
+.password-meter-container {
+    margin-top: 10px;
+}
+
+.strength-bar-bg {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.strength-bar-fill {
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.strength-weak { background: var(--color-error); width: 33%; }
+.strength-medium { background: var(--color-warning); width: 66%; }
+.strength-strong { background: var(--color-success); width: 100%; }
+
+.password-requirements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.password-requirements li {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.req-met { color: var(--color-success); }
+.req-unmet { color: var(--color-error); }
+
+.spinner-inline {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }

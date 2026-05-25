@@ -1,5 +1,5 @@
 .about-container {
-    background: #0f172a;
+    background: var(--color-background);
     color: white;
     padding: 100px 8%;
     min-height: 80vh;
@@ -32,7 +32,7 @@
 }
 
 .about-card {
-    background: #1e293b;
+    background: var(--color-surface);
     padding: 40px;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -45,7 +45,7 @@
 }
 
 .about-card h3 {
-    color: #f97316;
+    color: var(--color-primary);
     font-size: 1.8rem;
     margin-bottom: 15px;
 }
@@ -75,9 +75,9 @@
 .value-chip {
     padding: 15px 35px;
     background: rgba(249, 115, 22, 0.1);
-    border: 1px solid #f97316;
+    border: 1px solid var(--color-primary);
     border-radius: 100px;
-    color: #f97316;
+    color: var(--color-primary);
     font-weight: 700;
     font-size: 1.1rem;
     box-shadow: 0 4px 15px rgba(249, 115, 22, 0.1);
